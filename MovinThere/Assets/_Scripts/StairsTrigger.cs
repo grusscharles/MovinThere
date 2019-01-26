@@ -20,6 +20,7 @@ public class StairsTrigger : MonoBehaviour {
         {
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             rb.isKinematic = !rb.isKinematic;
+            rb.useFullKinematicContacts = !rb.useFullKinematicContacts;
         }
     }
 
