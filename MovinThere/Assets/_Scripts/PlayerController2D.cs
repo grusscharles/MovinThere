@@ -14,15 +14,13 @@ public class PlayerController2D : MonoBehaviour {
     float moveSpeedDiag = 1f;
 
     public bool isOnSlope = false;
-    public Vector3 moveDirStairs;
-    public Vector2 stairs;
+    public Vector2 moveDirStairs;
 
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        stairs = new Vector2(moveDirStairs.x, moveDirStairs.y);
     }
 
     void Update () {
@@ -47,11 +45,11 @@ public class PlayerController2D : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Q))
         {
-            rb.MovePosition(rb.position - direction * moveSpeedDiag * Time.deltaTime * stairs);
+            rb.MovePosition(rb.position - direction * moveSpeedDiag * Time.deltaTime * moveDirStairs);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rb.MovePosition(rb.position + direction * moveSpeedDiag * Time.deltaTime * stairs);
+            rb.MovePosition(rb.position + direction * moveSpeedDiag * Time.deltaTime * moveDirStairs);
         }
 
         /*

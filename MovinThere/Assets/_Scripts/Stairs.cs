@@ -6,7 +6,7 @@ public class Stairs : MonoBehaviour {
 
     Transform triggerDown, triggerUp;
     [HideInInspector]
-    public Vector3 slopeDir;
+    public Vector2 slopeDir;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class Stairs : MonoBehaviour {
     {
         if(triggerDown != null)
         {
-            Debug.DrawLine(triggerDown.position, triggerDown.position + slopeDir);
+            Debug.DrawLine(triggerDown.position, triggerDown.position + new Vector3(slopeDir.x, slopeDir.y, 0));
         }
    
     }
