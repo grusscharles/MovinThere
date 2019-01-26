@@ -7,8 +7,11 @@ using UnityEngine;
 public class PlayerController2D : MonoBehaviour {
 
     [SerializeField]
-    [Tooltip("vitesse de déplacement horizontal et vertical")]
-    float moveSpeed = 10f;
+    [Tooltip("vitesse de déplacement horizontal")]
+    float moveSpeed = 3f;
+    [SerializeField]
+    [Tooltip("vitesse de déplacement dans escaliers")]
+    float moveSpeedDiag = 1f;
 
     private bool isOnSlope = false;
 
@@ -36,6 +39,7 @@ public class PlayerController2D : MonoBehaviour {
         
     }
 
+    //Stairs triggers
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Enter stairs
@@ -62,11 +66,11 @@ public class PlayerController2D : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Q))
         {
-            rb.transform.position = rb.transform.position - direction * moveSpeed * Time.deltaTime * moveDirStairs;
+            rb.transform.position = rb.transform.position - direction * moveSpeedDiag * Time.deltaTime * moveDirStairs;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rb.transform.position = rb.transform.position + direction * moveSpeed * Time.deltaTime * moveDirStairs;
+            rb.transform.position = rb.transform.position + direction * moveSpeedDiag * Time.deltaTime * moveDirStairs;
         }
     }
 
