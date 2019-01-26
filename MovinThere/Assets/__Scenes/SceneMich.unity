@@ -324,7 +324,6 @@ GameObject:
   - component: {fileID: 1008284531}
   - component: {fileID: 1008284532}
   - component: {fileID: 1008284533}
-  - component: {fileID: 1008284534}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -442,25 +441,15 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1008284528}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35d8004f15d7344384931a35b368f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: {x: 7, y: 0}
   moveSpeedDiag: 1
---- !u!114 &1008284534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1008284528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5285084dad05b194fa17ed5d0eb446e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movin: 10
+  isOnSlope: 0
+  moveDirStairs: {x: 0, y: 0, z: 0}
 --- !u!1 &1541685349
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,8 +505,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 1
+  m_Mass: 1000
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
