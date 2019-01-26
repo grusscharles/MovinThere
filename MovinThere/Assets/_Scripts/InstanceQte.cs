@@ -23,7 +23,7 @@ public class InstanceQte : MonoBehaviour {
 	void Update () {
 
 
-        if (Time.time > tempsDattente)
+        /*if (Time.time > tempsDattente)
         {
             boutonRandom = Random.Range(0, 3);
             //print("le bouton instantié est le numéro" + boutonRandom);
@@ -34,7 +34,6 @@ public class InstanceQte : MonoBehaviour {
 
             tempsDattente = Time.time + nouveauTempsDattente;
         }
-
         if(nouveauBouton == mesBoutons[0])
         {
             print("le bouton instancié est le numéro 1");
@@ -51,6 +50,23 @@ public class InstanceQte : MonoBehaviour {
         if (nouveauBouton == mesBoutons[3])
         {
             print("le bouton instancié est le numéro 4");
+        }*/
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            print("le player est entré dans le trigger");
+
+            boutonRandom = Random.Range(0, 3);
+            //print("le bouton instantié est le numéro" + boutonRandom);
+
+            nouveauBouton = Instantiate(mesBoutons[boutonRandom]) as GameObject;
+            nouveauBouton.transform.SetParent(nouveauCanvas.transform, false);
+            Destroy(nouveauBouton, nouveauTempsDattente);
+
         }
     }
+
 }
