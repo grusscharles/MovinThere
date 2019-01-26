@@ -324,7 +324,6 @@ GameObject:
   - component: {fileID: 1008284531}
   - component: {fileID: 1008284532}
   - component: {fileID: 1008284533}
-  - component: {fileID: 1008284534}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -448,24 +447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
---- !u!254 &1008284534
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1008284528}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 1541685351}
-  m_BreakForce: 2500
-  m_BreakTorque: Infinity
-  m_MaxForce: 10000
-  m_MaxTorque: 10000
-  m_CorrectionScale: 0.3
-  m_AutoConfigureOffset: 0
-  m_LinearOffset: {x: 0, y: 1.4}
-  m_AngularOffset: 0
 --- !u!1 &1541685349
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +458,7 @@ GameObject:
   - component: {fileID: 1541685352}
   - component: {fileID: 1541685351}
   - component: {fileID: 1541685350}
+  - component: {fileID: 1541685354}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -588,3 +570,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1541685354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1541685349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f298e2aeb34ba24297cd74c820bef16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1008284531}
+  frictionCoef: 1
