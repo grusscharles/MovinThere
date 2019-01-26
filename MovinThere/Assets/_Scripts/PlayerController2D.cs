@@ -10,6 +10,10 @@ public class PlayerController2D : MonoBehaviour {
     [Tooltip("vitesse de déplacement horizontal et vertical")]
     float moveSpeed = 10f;
 
+    private bool isOnSlope = false;
+
+    Stairs stairs;
+    Vector3 moveDirStairs;
     Rigidbody2D rb;
 
     private void Start()
@@ -18,7 +22,52 @@ public class PlayerController2D : MonoBehaviour {
     }
 
     void Update () {
-        Move();
+        
+        //player on horizontal floor
+        if (!isOnSlope)
+        {
+            Move();
+        }
+        //player trying to go upstairs
+        else
+        {
+            MoveDiag();
+        }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Enter stairs
+        if(collision.gameObject.tag == "TriggerDown")
+        {
+            Debug.Log("[PlayerController] StairsEnter");
+            isOnSlope = true;
+            stairs = collision.GetComponentInParent<Stairs>();
+            moveDirStairs = stairs.slopeDir;
+        }
+        //Exit stairs
+        else if(collision.gameObject.tag == "TriggerUp")
+        {
+            Debug.Log("[PlayerController] StairsExit");
+            isOnSlope = false;
+        }
+
+    }
+
+    private void MoveDiag()
+    {
+        //float pour savoir si l'escalier monte vers la gauche ou vers la droite
+        float direction = Mathf.Sign(moveDirStairs.x);
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            rb.transform.position = rb.transform.position - direction * moveSpeed * Time.deltaTime * moveDirStairs;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.transform.position = rb.transform.position + direction * moveSpeed * Time.deltaTime * moveDirStairs;
+        }
     }
 
     private void Move()
@@ -33,4 +82,5 @@ public class PlayerController2D : MonoBehaviour {
         }
         
     }
+
 }
