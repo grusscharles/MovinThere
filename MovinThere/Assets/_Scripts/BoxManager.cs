@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoxManager : MonoBehaviour {
 
+    HiddenObject hidden;
     Belonging[] belongings;
     BoxToFill[] boxes;
 
@@ -22,11 +23,34 @@ public class BoxManager : MonoBehaviour {
         //Get all boxes and belongings
         belongings = FindObjectsOfType<Belonging>();
         boxes = FindObjectsOfType<BoxToFill>();
+        hidden = FindObjectOfType<HiddenObject>();
     }
 
     public void GetBelonging(Belonging bel)
     {
         belonging = bel;
+    }
+    
+    //Debug
+    public void PrintBelongings()
+    {
+
+        if (boxes.Length > 0)
+        {
+
+            foreach (BoxToFill box in boxes)
+            {
+                foreach (Belonging bel in box.belongingsList)
+                {
+                    Debug.Log("items stored in " + box.name + " : " + bel.name);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("boxes is empty");
+        }
+     
     }
 
     #region Boxes Validation
@@ -35,6 +59,7 @@ public class BoxManager : MonoBehaviour {
     {
         AddBelongingsToBoxes();
         ComputeBoxesValues();
+        hidden.HideChildren();
     }
 
     void AddBelongingsToBoxes()
@@ -52,6 +77,5 @@ public class BoxManager : MonoBehaviour {
             b.ComputeValue();
         }
     }
-
     #endregion
 }
