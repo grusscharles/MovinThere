@@ -11,7 +11,8 @@ public class Belonging : MonoBehaviour {
     public int value;
     [SerializeField]
     Color highlightColor;
-
+    [HideInInspector]
+    public bool isStored = false;
     private void Awake()
     {
         //rend = GetComponent<SpriteRenderer>();

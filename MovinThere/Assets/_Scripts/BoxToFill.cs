@@ -38,6 +38,7 @@ public class BoxToFill : MonoBehaviour {
 
     void FillBox(Belonging belonging)
     {
+        belonging.isStored = true;
         belonging.transform.position = new Vector3(transform.position.x, transform.position.y, belonging.transform.position.z);
         belonging.transform.SetParent(transform);
     }

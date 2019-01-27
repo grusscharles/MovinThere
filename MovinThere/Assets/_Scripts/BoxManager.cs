@@ -8,14 +8,19 @@ public class BoxManager : MonoBehaviour {
     Belonging[] belongings;
     BoxToFill[] boxes;
 
+    [SerializeField]
+    GameObject validationButton;
     [HideInInspector]
     public BoxToFill box;
 
     [HideInInspector]
     public Belonging belonging;
 
+    bool itemsStored = false;
+
     private void Awake()
     {
+        validationButton.SetActive(false);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -24,6 +29,39 @@ public class BoxManager : MonoBehaviour {
         belongings = FindObjectsOfType<Belonging>();
         boxes = FindObjectsOfType<BoxToFill>();
         hidden = FindObjectOfType<HiddenObject>();
+    }
+
+    private void Update()
+    {
+        if (!itemsStored)
+        {
+            CheckBelongings();
+        }
+    }
+    
+    //Check if all items are stored
+    void CheckBelongings()
+    {
+        int itemsStoredNumber = 0;
+        //Check if all items are stored
+        foreach (Belonging bel in belongings)
+        {
+            if (bel.isStored)
+            {
+                itemsStoredNumber += 1;
+            }
+        }
+        //all items stored
+        if (itemsStoredNumber > belongings.Length - 1)
+        {
+            EnableValidation();
+        }
+    }
+    //Enable validation Button
+    void EnableValidation()
+    {
+        itemsStored = true;
+        validationButton.SetActive(true);
     }
 
     public void GetBelonging(Belonging bel)
