@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController2D : MonoBehaviour {
 
+    public bool triggered = false;
+
     [SerializeField]
     [Tooltip("vitesse de déplacement horizontal")]
     Vector2 moveSpeed = new Vector2(3.0f, 0.0f);
@@ -73,6 +75,16 @@ public class PlayerController2D : MonoBehaviour {
             rb.MovePosition(rb.position + moveSpeed * Time.deltaTime);
         }
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Trigger_Pass1" && triggered == false)
+        {
+            Debug.Log("TAPE le trigger");
+
+            triggered = true;
+        }
     }
 
 }

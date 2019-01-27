@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class Box_Pass : MonoBehaviour {
 
-    bool triggered = false;
-    
-    /*
+    public PlayerController2D Player0;
+    public PlayerController2D Player1;
+
+    bool passed = false;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Player0.triggered && !passed)
         {
-            transform.GetChild(0).transform.position = new Vector3(8.67f, 0.76f, 0f);
+            transform.position = new Vector3(4.3f, -2.49f, 0);
+
+            Player0.enabled = false;
+            Player1.enabled = true;
+
+            passed = true;
         }
     }
-    */
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Trigger_Pass1" && triggered == false)
-        {
-            Debug.Log("TAPE le trigger");
-
-            triggered = true;
-
-            Vector3 pos = new Vector3(4f, -2f, 0f);
-
-            transform.position = pos;            
-        }
-    }
-    
 }
