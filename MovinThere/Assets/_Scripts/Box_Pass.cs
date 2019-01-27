@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class Box_Pass : MonoBehaviour {
 
-	void Update () {
-
-        /*
-        private void OnCollisionEnter2D(Collision2D collision)
+    bool triggered = false;
+    Vector3 boxPos = new Vector3(0,0,0);
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            if (collision.gameObject.tag == "Box")
-            {
-                Vector3 pos = collision.gameObject.transform.position;
+            transform.GetChild(0).transform.position = new Vector3(8.67f, 0.76f, 0f);
+        }
+    }
 
-                Destroy(collision.gameObject);
-            }
-        }
-        */
-        if (Input.GetKeyDown(KeyCode.F))
+    /*
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Trigger_Pass1" && triggered == false)
         {
-            transform.position = new Vector3 (5, 5, 5);
+            Debug.Log("TAPE le trigger");
+
+            triggered = true;
+
+            Vector3 pos = new Vector3(4f, -2f, 0f);
+
+            transform.position = pos;            
         }
-		
-	}
+    }
+    */
 }
