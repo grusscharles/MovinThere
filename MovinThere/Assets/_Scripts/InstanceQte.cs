@@ -26,6 +26,8 @@ public class InstanceQte : MonoBehaviour {
     // autorisations déclencher une fois le Trigger + appuyer touche.
     private bool boutonDejaInstancie = false;
     private bool autorisationAppuyer = false;
+
+    private bool qteReussi;
      
     
     
@@ -47,27 +49,62 @@ public class InstanceQte : MonoBehaviour {
             {
                 nouveauCercle.transform.localScale -= retractation * Time.deltaTime;
 
-                if (Input.GetKey(KeyCode.A))
+                if (Input.anyKeyDown)
                 {
-                    Destroy(nouveauBouton);
-                    Destroy(nouveauCercle);
-                    autorisationAppuyer = false;
-                    Debug.Log("vous avez appuyé sur le bon bouton à temps !");
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        qteReussi = true;
+                        Debug.Log("vous avez appuyé sur le bon bouton à temps !");
+                        StartCoroutine(retourAvantDestruction());
+                    }
+
+                    else if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+                    {
+                        Debug.Log("faut bien se déplacer dans la vie...");
+                    }
+                    else
+                    {
+                        qteReussi = false;                        
+                        Debug.Log("vous n'avez pas appuyé sur la bonne touche," +
+                            " c'était pourtant simple. Vous êtes vraiment mauvais." +
+                            " N'éssayez plus, rentrez chez vous. Pensez à votre vie" +
+                            " et à la façon dont vous l'avez raté...");
+                        StartCoroutine(retourAvantDestruction());
+                    }
                 }
-                
             }
             else
             {
-                Destroy(nouveauBouton);
-                Destroy(nouveauCercle);
-                autorisationAppuyer = false;
-                Debug.Log("Vous n'avez pas appuyé sur le bon bouton à temps !");
+                qteReussi = false;
+                Debug.Log("Le temps est écoulé");
+                StartCoroutine(retourAvantDestruction());
             }
-
-
-
         }
     }
+
+    IEnumerator retourAvantDestruction()
+    {
+        autorisationAppuyer = false;
+
+        if (qteReussi == true)
+        {
+            nouveauBouton.GetComponent<Image>().color = Color.green;
+            nouveauCercle.GetComponent<Image>().color = Color.green;
+        }
+
+        if(qteReussi == false)
+        {
+            nouveauBouton.GetComponent<Image>().color = Color.red;
+            nouveauCercle.GetComponent<Image>().color = Color.red;
+        }
+
+        yield return new WaitForSeconds(1);
+        Destroy(nouveauBouton);
+        Destroy(nouveauCercle);
+    }
+
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
