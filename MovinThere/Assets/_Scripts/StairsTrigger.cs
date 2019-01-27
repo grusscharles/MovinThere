@@ -6,32 +6,39 @@ public class StairsTrigger : MonoBehaviour
 {
     Stairs stairs;
     PlayerController2D player;
-    public bool isUpRight,isUpLeft, isEnter, isExit;
+    bool checkInput = false;
+
+    public bool isUpRight,isUpLeft, isDownEnterTrigger, isExit;
 
     private void Awake()
     {
         player = FindObjectOfType<PlayerController2D>();
         stairs = GetComponentInParent<Stairs>();
     }
-
+    private void Update()
+    {
+        if (checkInput && Input.GetKeyDown(KeyCode.S))
+            TakeStairs();
+    }
     //Enter Stairs
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "PlayerCenter")
         {
             //take stairs
-            if (!player.isOnSlope && isEnter)
+            if (!player.isOnSlope)
             {
-                player.moveDirStairs = stairs.slopeDir;
-                player.isOnSlope = true;
+                //Go upstairs
+                if (isDownEnterTrigger)
+                {
+                    TakeStairs();
+                }
+                //Go downstairs
+                else if(isUpLeft || isUpRight)
+                {
+                    checkInput = true;
+                }
 
-                //avoid player floating towards right dir when going downstairs
-                if (isUpRight)
-                    player.canMoveRight = false;
-                
-                //avoid player floating towards left dir when going downstairs
-                else if (isUpLeft)
-                    player.canMoveLeft = false;
             }
             //exit stairs
             else if (player.isOnSlope && isExit)
@@ -43,10 +50,18 @@ public class StairsTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (isUpRight)
-            player.canMoveRight = true;
-        else if (isUpLeft)
-            player.canMoveLeft = true;
+        if(collision.tag == "PlayerCenter")
+        {
+            if (isUpLeft || isUpRight)
+                checkInput = false;
+        }
+    }
+
+    void TakeStairs()
+    {
+        Debug.Log("take stairs");
+        player.moveDirStairs = stairs.slopeDir;
+        player.isOnSlope = true;
     }
 
 }
