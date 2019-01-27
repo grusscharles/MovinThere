@@ -6,7 +6,6 @@ public class StairsTrigger : MonoBehaviour
 {
     Stairs stairs;
     PlayerController2D player;
-    bool checkInput = false;
 
     public bool isUpRight,isUpLeft, isDownEnterTrigger, isExit;
 
@@ -15,15 +14,11 @@ public class StairsTrigger : MonoBehaviour
         player = FindObjectOfType<PlayerController2D>();
         stairs = GetComponentInParent<Stairs>();
     }
-    private void Update()
-    {
-        if (checkInput && Input.GetKeyDown(KeyCode.S))
-            TakeStairs();
-    }
+
     //Enter Stairs
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerCenter")
+        if (collision.tag == "Player")
         {
             //take stairs
             if (!player.isOnSlope)
@@ -36,24 +31,16 @@ public class StairsTrigger : MonoBehaviour
                 //Go downstairs
                 else if(isUpLeft || isUpRight)
                 {
-                    checkInput = true;
+                    TakeStairs();
                 }
 
             }
             //exit stairs
             else if (player.isOnSlope && isExit)
             {
+                Debug.Log("GO");
                 player.isOnSlope = false;
             }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "PlayerCenter")
-        {
-            if (isUpLeft || isUpRight)
-                checkInput = false;
         }
     }
 

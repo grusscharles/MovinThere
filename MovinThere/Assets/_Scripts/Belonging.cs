@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Belonging : MonoBehaviour {
     BoxManager boxManager;
-    SpriteRenderer rend;
+    //SpriteRenderer rend;
+    BoxToFill parentBox;
 
     [Tooltip("Score que rapporte cet objet")]
     public int value;
+    [SerializeField]
+    Color highlightColor;
 
     private void Awake()
     {
+        //rend = GetComponent<SpriteRenderer>();
         boxManager = FindObjectOfType<BoxManager>();
     }
 
@@ -22,7 +26,14 @@ public class Belonging : MonoBehaviour {
     void SelectBelonging()
     {
         boxManager.GetBelonging(this);
+        //rend.color = highlightColor;
+    }
 
+    //Validation
+    public void AddToBox()
+    {
+        parentBox = transform.GetComponentInParent<BoxToFill>();
+        parentBox.belongingsList.Add(this);
     }
 
 }

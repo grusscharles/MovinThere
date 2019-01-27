@@ -29,9 +29,29 @@ public class BoxManager : MonoBehaviour {
         belonging = bel;
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    #region Boxes Validation
+    //Validate boxes
+    public void ValidateBoxes()
+    {
+        AddBelongingsToBoxes();
+        ComputeBoxesValues();
+    }
 
+    void AddBelongingsToBoxes()
+    {
+        foreach (Belonging b in belongings)
+        {
+            b.AddToBox();
+        }
+    }
+
+    void ComputeBoxesValues()
+    {
+        foreach(BoxToFill b in boxes)
+        {
+            b.ComputeValue();
+        }
+    }
+
+    #endregion
 }

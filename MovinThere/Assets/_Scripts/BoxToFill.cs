@@ -1,11 +1,17 @@
-﻿using System.Collections;
+﻿//#define DEBUG
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BoxToFill : MonoBehaviour {
     BoxManager boxManager;
-    List<Belonging> belongingsList;
     int boxValue;
+
+    [SerializeField]
+    int boxOwnValue = 1;
+    [HideInInspector]
+    public List<Belonging> belongingsList;
 
     private void Awake()
     {
@@ -15,7 +21,7 @@ public class BoxToFill : MonoBehaviour {
     void Start()
     {
         belongingsList = new List<Belonging>();
-        boxValue = 0;
+        boxValue = boxOwnValue;
     }
 
     private void OnMouseDown()
@@ -33,14 +39,22 @@ public class BoxToFill : MonoBehaviour {
     void FillBox(Belonging belonging)
     {
         belonging.transform.position = new Vector3(transform.position.x, transform.position.y, belonging.transform.position.z);
-        Debug.Log("[BoxToFill] item name : " + belonging.name);
+        belonging.transform.SetParent(transform);
     }
 
+    //Validation
     public void ComputeValue()
     {
         foreach(Belonging bel in belongingsList)
         {
             boxValue += bel.value;
         }
+#if DEBUG
+        foreach (Belonging bel in belongingsList)
+        {
+            Debug.Log("belongings in " + gameObject.name + "  : " + bel.name);
+        }
+        Debug.Log(gameObject.name+ " value : " + boxValue);
+#endif
     }
 }
