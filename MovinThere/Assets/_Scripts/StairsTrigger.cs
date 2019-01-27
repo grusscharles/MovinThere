@@ -6,7 +6,7 @@ public class StairsTrigger : MonoBehaviour
 {
     Stairs stairs;
     PlayerController2D player;
-    public bool isUp, isEnter, isExit;
+    public bool isUpRight,isUpLeft, isEnter, isExit;
 
     private void Awake()
     {
@@ -26,10 +26,12 @@ public class StairsTrigger : MonoBehaviour
                 player.isOnSlope = true;
 
                 //avoid player floating towards right dir when going downstairs
-                if (isUp)
-                {
+                if (isUpRight)
                     player.canMoveRight = false;
-                }
+                
+                //avoid player floating towards left dir when going downstairs
+                else if (isUpLeft)
+                    player.canMoveLeft = false;
             }
             //exit stairs
             else if (player.isOnSlope && isExit)
@@ -41,10 +43,10 @@ public class StairsTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (isUp)
-        {
+        if (isUpRight)
             player.canMoveRight = true;
-        }
+        else if (isUpLeft)
+            player.canMoveLeft = true;
     }
 
 }
