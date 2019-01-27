@@ -59,7 +59,6 @@ public class StairsTrigger : MonoBehaviour
 
     void TakeStairs()
     {
-        Debug.Log("take stairs");
         player.moveDirStairs = stairs.slopeDir;
         player.isOnSlope = true;
     }
