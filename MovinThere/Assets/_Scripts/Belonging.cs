@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Belonging : MonoBehaviour {
     BoxManager boxManager;
-    //SpriteRenderer rend;
+    SpriteRenderer rend;
     BoxToFill parentBox;
+    Color originalColor;
 
     [Tooltip("Score que rapporte cet objet")]
     public int value;
@@ -13,9 +14,11 @@ public class Belonging : MonoBehaviour {
     Color highlightColor;
     [HideInInspector]
     public bool isStored = false;
+
     private void Awake()
     {
-        //rend = GetComponent<SpriteRenderer>();
+        rend = GetComponent<SpriteRenderer>();
+        originalColor = rend.color;
         boxManager = FindObjectOfType<BoxManager>();
     }
 
@@ -26,8 +29,14 @@ public class Belonging : MonoBehaviour {
 
     void SelectBelonging()
     {
+        boxManager.SetBelongingsColor();
         boxManager.GetBelonging(this);
-        //rend.color = highlightColor;
+        rend.color = highlightColor;
+    }
+
+    public void SetOriginalColor()
+    {
+        rend.color = originalColor;
     }
 
     //Validation

@@ -31,6 +31,21 @@ public class BoxManager : MonoBehaviour {
         hidden = FindObjectOfType<HiddenObject>();
     }
 
+    public void GetBelonging(Belonging bel)
+    {
+        belonging = bel;
+    }
+
+    //Set all belongings color to original
+    public void SetBelongingsColor()
+    {
+        foreach(Belonging bel in belongings)
+        {
+            bel.SetOriginalColor();
+        }
+    }
+
+    #region Check if all items are stored
     private void Update()
     {
         if (!itemsStored)
@@ -57,6 +72,10 @@ public class BoxManager : MonoBehaviour {
             EnableValidation();
         }
     }
+    #endregion
+
+    #region Boxes Validation
+
     //Enable validation Button
     void EnableValidation()
     {
@@ -64,34 +83,6 @@ public class BoxManager : MonoBehaviour {
         validationButton.SetActive(true);
     }
 
-    public void GetBelonging(Belonging bel)
-    {
-        belonging = bel;
-    }
-    
-    //Debug
-    public void PrintBelongings()
-    {
-
-        if (boxes.Length > 0)
-        {
-
-            foreach (BoxToFill box in boxes)
-            {
-                foreach (Belonging bel in box.belongingsList)
-                {
-                    Debug.Log("items stored in " + box.name + " : " + bel.name);
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("boxes is empty");
-        }
-     
-    }
-
-    #region Boxes Validation
     //Validate boxes
     public void ValidateBoxes()
     {
