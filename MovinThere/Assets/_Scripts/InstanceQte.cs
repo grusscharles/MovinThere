@@ -5,24 +5,37 @@ using UnityEngine.UI;
 
 public class InstanceQte : MonoBehaviour {
 
-
+    // récupération du Canva
     private GameObject nouveauCanvas;
-    //public GameObject[] mesBoutons;
+
+    // récupération de l'objet bouton QTE
     public GameObject boutonQte;
     private GameObject nouveauBouton;
 
+    // récupération de l'objet cercle
     public GameObject cercleTempsLimite;
     private GameObject nouveauCercle;
 
-    public float vitesseRetractationCercle = 0.25f;
+    // pour récupérer les scale du bouton et du cercle
+    private Vector3 tailleBouton;
 
-    private int boutonRandom;
+    // pour décrémenter le scale du cercle
+    private Vector3 retractation;
+    public float vitesseRetractation = 0.3f;
+
+    // autorisations déclencher une fois le Trigger + appuyer touche.
     private bool boutonDejaInstancie = false;
     private bool autorisationAppuyer = false;
      
+    
+    
     // Use this for initialization
 	void Start () {
 
+        tailleBouton = boutonQte.transform.localScale;
+
+        retractation = new Vector3(vitesseRetractation, vitesseRetractation);
+        
     }
 	
 	// Update is called once per frame
@@ -30,22 +43,29 @@ public class InstanceQte : MonoBehaviour {
 
         if (autorisationAppuyer == true)
         {
-
-            if (Input.GetKeyDown(KeyCode.A))
+            if (nouveauCercle.transform.localScale.x >= tailleBouton.x)
             {
-                Destroy(nouveauBouton);
-                Destroy(nouveauCercle);
+                nouveauCercle.transform.localScale -= retractation * Time.deltaTime;
 
-                Debug.Log("félicitation ! tu as appuyé sur la bonne touche à temps");
+                if (Input.GetKey(KeyCode.A))
+                {
+                    Destroy(nouveauBouton);
+                    Destroy(nouveauCercle);
+                    autorisationAppuyer = false;
+                    Debug.Log("vous avez appuyé sur le bon bouton à temps !");
+                }
+                
             }
             else
             {
-                nouveauCercle.gameObject.transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * vitesseRetractationCercle;
-                Destroy(nouveauBouton, 5);
-                Destroy(nouveauCercle, 5);
-
-
+                Destroy(nouveauBouton);
+                Destroy(nouveauCercle);
+                autorisationAppuyer = false;
+                Debug.Log("Vous n'avez pas appuyé sur le bon bouton à temps !");
             }
+
+
+
         }
     }
 
