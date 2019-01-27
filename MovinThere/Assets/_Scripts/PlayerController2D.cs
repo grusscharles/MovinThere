@@ -13,13 +13,19 @@ public class PlayerController2D : MonoBehaviour {
     [Tooltip("vitesse de déplacement dans escaliers")]
     float moveSpeedDiag = 1f;
 
+    [HideInInspector]
     public bool isOnSlope = false;
+    [HideInInspector]
+    public bool canMoveRight, canMoveLeft;
+    [HideInInspector]
     public Vector2 moveDirStairs;
 
     Rigidbody2D rb;
 
     private void Start()
     {
+        canMoveRight = true;
+        canMoveLeft = true;
         rb = this.GetComponent<Rigidbody2D>();
     }
 
@@ -41,40 +47,28 @@ public class PlayerController2D : MonoBehaviour {
     //Go Upstairs
     private void MoveDiag()
     {
+        //float pour savoir si l'escalier monte vers la gauche ou vers la droite
         float direction = Mathf.Sign(moveDirStairs.x);
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && canMoveLeft)
         {
             rb.MovePosition(rb.position - direction * moveSpeedDiag * Time.deltaTime * moveDirStairs);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && canMoveRight)
         {
             rb.MovePosition(rb.position + direction * moveSpeedDiag * Time.deltaTime * moveDirStairs);
         }
 
-        /*
-        //float pour savoir si l'escalier monte vers la gauche ou vers la droite
-        float direction = Mathf.Sign(moveDirStairs.x);
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            rb.transform.position = rb.transform.position - direction * moveSpeedDiag * Time.deltaTime * moveDirStairs;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb.transform.position = rb.transform.position + direction * moveSpeedDiag * Time.deltaTime * moveDirStairs;
-        }
-        */
     }
 
     //Horizontal Movement
     private void Move()
     {
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && canMoveLeft)
         {
             rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * -1);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && canMoveRight)
         {
             rb.MovePosition(rb.position + moveSpeed * Time.deltaTime);
         }

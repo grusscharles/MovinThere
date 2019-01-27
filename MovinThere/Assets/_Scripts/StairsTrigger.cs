@@ -6,7 +6,6 @@ public class StairsTrigger : MonoBehaviour
 {
     public bool isUpTrigger, isDownTrigger;
 
-    int count =0;
     Stairs stairs;
     PlayerController2D player;
 
@@ -19,7 +18,7 @@ public class StairsTrigger : MonoBehaviour
     //Enter Stairs
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
             //take stairs
             if (!player.isOnSlope)

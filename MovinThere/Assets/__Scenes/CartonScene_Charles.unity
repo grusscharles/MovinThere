@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 1556566681}
   - component: {fileID: 1556566682}
   m_Layer: 0
-  m_Name: Hand_Reach
+  m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

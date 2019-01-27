@@ -25,17 +25,16 @@ public class HandController : MonoBehaviour {
 
     void Grab()
     {
-        float h = Input.GetAxisRaw("Horizontal");
+        float h = Input.GetAxis("Horizontal");
         Debug.Log(h);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             spriteSwap.SwapSprite();
-            battant.Rotate(new Vector3(h,0,0));
+            battant.Rotate(new Vector3(0,0,-h));
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("ok");
     }
 }
