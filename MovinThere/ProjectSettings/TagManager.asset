@@ -6,6 +6,8 @@ TagManager:
   tags:
   - TriggerDown
   - TriggerUp
+  - PlayerCenter
+  - Box
   layers:
   - Default
   - TransparentFX
