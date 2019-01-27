@@ -7,66 +7,66 @@ public class InstanceQte : MonoBehaviour {
 
 
     private GameObject nouveauCanvas;
-    public GameObject[] mesBoutons;
+    //public GameObject[] mesBoutons;
+    public GameObject boutonQte;
     private GameObject nouveauBouton;
+
+    public GameObject cercleTempsLimite;
+    private GameObject nouveauCercle;
+
+    public float vitesseRetractationCercle = 0.25f;
+
     private int boutonRandom;
-    private float tempsDattente;
-    private float nouveauTempsDattente = 2f;
+    private bool boutonDejaInstancie = false;
+    private bool autorisationAppuyer = false;
      
     // Use this for initialization
 	void Start () {
 
-        nouveauCanvas = GameObject.Find("Canvas");
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
+        if (autorisationAppuyer == true)
+        {
 
-        /*if (Time.time > tempsDattente)
-        {
-            boutonRandom = Random.Range(0, 3);
-            //print("le bouton instantié est le numéro" + boutonRandom);
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                Destroy(nouveauBouton);
+                Destroy(nouveauCercle);
 
-            nouveauBouton = Instantiate(mesBoutons[boutonRandom]) as GameObject;
-            nouveauBouton.transform.SetParent(nouveauCanvas.transform, false);
-            Destroy(nouveauBouton, nouveauTempsDattente);
+                Debug.Log("félicitation ! tu as appuyé sur la bonne touche à temps");
+            }
+            else
+            {
+                nouveauCercle.gameObject.transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * vitesseRetractationCercle;
+                Destroy(nouveauBouton, 5);
+                Destroy(nouveauCercle, 5);
 
-            tempsDattente = Time.time + nouveauTempsDattente;
-        }
-        if(nouveauBouton == mesBoutons[0])
-        {
-            print("le bouton instancié est le numéro 1");
-        }
 
-        if (nouveauBouton == mesBoutons[1])
-        {
-            print("le bouton instancié est le numéro 2");
+            }
         }
-        if (nouveauBouton == mesBoutons[2])
-        {
-            print("le bouton instancié est le numéro 3");
-        }
-        if (nouveauBouton == mesBoutons[3])
-        {
-            print("le bouton instancié est le numéro 4");
-        }*/
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && boutonDejaInstancie == false)
         {
-            print("le player est entré dans le trigger");
+            Debug.Log("le Player a traversé le Trigger");
 
-            boutonRandom = Random.Range(0, 3);
-            //print("le bouton instantié est le numéro" + boutonRandom);
+            nouveauCanvas = GameObject.Find("Canvas");
 
-            nouveauBouton = Instantiate(mesBoutons[boutonRandom]) as GameObject;
+            nouveauCercle = Instantiate(cercleTempsLimite) as GameObject;
+            nouveauCercle.transform.SetParent(nouveauCanvas.transform, false);
+
+            nouveauBouton = Instantiate(boutonQte) as GameObject;
             nouveauBouton.transform.SetParent(nouveauCanvas.transform, false);
-            Destroy(nouveauBouton, nouveauTempsDattente);
 
+            boutonDejaInstancie = true;
+            autorisationAppuyer = true;
         }
     }
-
 }
+
+
