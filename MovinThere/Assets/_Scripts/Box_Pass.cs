@@ -5,8 +5,8 @@ using UnityEngine;
 public class Box_Pass : MonoBehaviour {
 
     bool triggered = false;
-    Vector3 boxPos = new Vector3(0,0,0);
     
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -14,8 +14,8 @@ public class Box_Pass : MonoBehaviour {
             transform.GetChild(0).transform.position = new Vector3(8.67f, 0.76f, 0f);
         }
     }
+    */
 
-    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Trigger_Pass1" && triggered == false)
@@ -29,5 +29,5 @@ public class Box_Pass : MonoBehaviour {
             transform.position = pos;            
         }
     }
-    */
+    
 }
