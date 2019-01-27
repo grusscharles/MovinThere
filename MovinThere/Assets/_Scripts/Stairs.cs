@@ -1,25 +1,21 @@
-﻿using System.Collections;
+﻿#define DEBUG_STAIRS_DIRECTION
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Stairs : MonoBehaviour {
-
+    [SerializeField]
     Transform triggerDown, triggerUp;
     [HideInInspector]
     public Vector2 slopeDir;
 
-    private void Awake()
+    void Start ()
     {
-        triggerDown = transform.GetChild(0);
-        triggerUp = transform.GetChild(1);
-    }
-
-    // Use this for initialization
-    void Start () {
-
+        // Get stairs direction
         slopeDir = Vector3.Scale(triggerUp.position, new Vector3(1, 1, 0)) - Vector3.Scale(triggerDown.position, new Vector3(1, 1, 0));
     }
 
+#if DEBUG_STAIRS_DIRECTION
     private void OnDrawGizmos()
     {
         if(triggerDown != null)
@@ -28,7 +24,8 @@ public class Stairs : MonoBehaviour {
         }
    
     }
-    // Update is called once per frame
+#endif
+
     void Update () {
 		
 	}

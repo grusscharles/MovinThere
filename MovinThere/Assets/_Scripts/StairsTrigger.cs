@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class StairsTrigger : MonoBehaviour
 {
-    public bool isUpTrigger, isDownTrigger;
-
     Stairs stairs;
     PlayerController2D player;
+    public bool isUp, isEnter, isExit;
 
     private void Awake()
     {
@@ -21,16 +20,30 @@ public class StairsTrigger : MonoBehaviour
         if (collision.tag == "Player")
         {
             //take stairs
-            if (!player.isOnSlope)
+            if (!player.isOnSlope && isEnter)
             {
                 player.moveDirStairs = stairs.slopeDir;
                 player.isOnSlope = true;
+
+                //avoid player floating towards right dir when going downstairs
+                if (isUp)
+                {
+                    player.canMoveRight = false;
+                }
             }
             //exit stairs
-            else if (player.isOnSlope)
+            else if (player.isOnSlope && isExit)
             {
                 player.isOnSlope = false;
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (isUp)
+        {
+            player.canMoveRight = true;
         }
     }
 

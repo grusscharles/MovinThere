@@ -28,6 +28,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1290947522052118
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4661745752199714}
+  - component: {fileID: 61649691133718366}
+  - component: {fileID: 114434368293725522}
+  m_Layer: 8
+  m_Name: upExitTrigger
+  m_TagString: TriggerUp
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1499449112379996
 GameObject:
   m_ObjectHideFlags: 1
@@ -39,7 +56,7 @@ GameObject:
   - component: {fileID: 61496736380615366}
   - component: {fileID: 114286301155424804}
   m_Layer: 8
-  m_Name: enterTrigger
+  m_Name: downExitTrigger
   m_TagString: TriggerDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,6 +73,23 @@ GameObject:
   m_Layer: 8
   m_Name: etage
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1677620465312052
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4854462303076762}
+  - component: {fileID: 61314033299941572}
+  - component: {fileID: 114066276423865834}
+  m_Layer: 8
+  m_Name: downEnterTrigger
+  m_TagString: TriggerDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +121,7 @@ GameObject:
   - component: {fileID: 61651959389837176}
   - component: {fileID: 114095601511551416}
   m_Layer: 8
-  m_Name: exitTrigger
+  m_Name: upEnterTrigger
   m_TagString: TriggerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,11 +165,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1499449112379996}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5399997, y: -1.107, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.64, y: -1.1069998, z: 0}
+  m_LocalScale: {x: 0.9999912, y: 0.99999094, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 4793221003956654}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4586720445557280
 Transform:
@@ -144,11 +178,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851298004492244}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6000006, y: 2.011, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.42, y: 2.011, z: 0}
+  m_LocalScale: {x: 0.9999912, y: 0.99999094, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 4793221003956654}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4655784778661962
 Transform:
@@ -163,6 +197,19 @@ Transform:
   m_Father: {fileID: 4766600396202132}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4661745752199714
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290947522052118}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.6000006, y: 2.011, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4793221003956654}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4702953127988594
 Transform:
   m_ObjectHideFlags: 1
@@ -174,7 +221,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4793221003956654}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4766600396202132
 Transform:
@@ -202,8 +249,10 @@ Transform:
   m_LocalPosition: {x: 0.20231979, y: -3.08, z: 0}
   m_LocalScale: {x: 0.096429124, y: 2.215334, z: 1}
   m_Children:
+  - {fileID: 4854462303076762}
   - {fileID: 4557017988029244}
   - {fileID: 4586720445557280}
+  - {fileID: 4661745752199714}
   - {fileID: 4702953127988594}
   m_Father: {fileID: 4766600396202132}
   m_RootOrder: 0
@@ -221,12 +270,25 @@ Transform:
   m_Father: {fileID: 4766600396202132}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61496736380615366
+--- !u!4 &4854462303076762
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1677620465312052}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.5399997, y: -1.107, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4793221003956654}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61314033299941572
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1499449112379996}
+  m_GameObject: {fileID: 1677620465312052}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -245,6 +307,56 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &61496736380615366
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499449112379996}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.45308846}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.093823045}
+  m_EdgeRadius: 0
+--- !u!61 &61649691133718366
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290947522052118}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.451725, y: 0.13405037}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3834333, y: 0.73189926}
   m_EdgeRadius: 0
 --- !u!61 &61651959389837176
 BoxCollider2D:
@@ -271,6 +383,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3834333, y: 0.73189926}
   m_EdgeRadius: 0
+--- !u!114 &114066276423865834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1677620465312052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972d71d3d9436414183539ab2166e035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUp: 0
+  isEnter: 1
+  isExit: 0
 --- !u!114 &114095601511551416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,8 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972d71d3d9436414183539ab2166e035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUpTrigger: 1
-  isDownTrigger: 0
+  isUp: 1
+  isEnter: 1
+  isExit: 0
 --- !u!114 &114250791640487616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,6 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f722777a2567c154c8f343a98b2f383c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerDown: {fileID: 4854462303076762}
+  triggerUp: {fileID: 4661745752199714}
   slopeDir: {x: 0, y: 0}
 --- !u!114 &114286301155424804
 MonoBehaviour:
@@ -307,8 +436,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972d71d3d9436414183539ab2166e035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUpTrigger: 0
-  isDownTrigger: 1
+  isUp: 0
+  isEnter: 0
+  isExit: 1
+--- !u!114 &114434368293725522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290947522052118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972d71d3d9436414183539ab2166e035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUp: 0
+  isEnter: 0
+  isExit: 1
 --- !u!212 &212014550526181840
 SpriteRenderer:
   m_ObjectHideFlags: 1
